@@ -1,5 +1,7 @@
-#！/bin/bash
-for files in `ls *.html`
-do
-      mv $files ${file%.html}.en.html
+#!/bin/sh
+cd /webroot/
+
+for file in `find . -type f -name "*\.html" ! -name "*.en.html"`;do
+dirname=`pwd $file`
+mv $file $dirname/"${file%html}en.html";
 done
