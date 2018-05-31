@@ -1,7 +1,11 @@
 #!/bin/sh
-cd /webroot/
+postfix=('html' 'htm')
+region='en'
 
-for file in `find . -type f -name "*\.html" ! -name "*.en.html"`;do
-dirname=`pwd $file`
-mv $file $dirname/"${file%html}en.html";
+cd /webroot/
+for i in ${postfix[@]};do
+  for file in `find . -type f -name "*\.${i}" ! -name "*\.${region}.${i}"`;do
+    dirname=`pwd $file`
+    mv $file $dirname/"${file%${i}}${region}.${i}";
+  done
 done
